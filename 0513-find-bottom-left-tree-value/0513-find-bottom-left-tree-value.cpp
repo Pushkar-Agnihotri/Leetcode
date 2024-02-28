@@ -12,23 +12,20 @@
 class Solution {
 public:
     int findBottomLeftValue(TreeNode* root) {
-        if(!root) return -1;
-        queue <TreeNode*> q;
-        q.push(root);
-        int ans=0;
-        while(!q.empty()){
-            int leftmostval = q.front()->val;
-            cout<<q.front()->val<<" ";
-            TreeNode* current = q.front();
-            q.pop();
-            if(current->right){
-                q.push(current->right);
+         queue<TreeNode*> queue;
+        TreeNode* current = root;
+        queue.push(current);
+
+        while (!queue.empty()) {
+            current = queue.front();
+            queue.pop();
+            if (current->right != nullptr) {
+                queue.push(current->right);
             }
-            if(current->left){
-                q.push(current->left);
+            if (current->left != nullptr) {
+                queue.push(current->left);
             }
-            ans = current->val;
         }
-        return ans;
+        return current->val;
     }
 };
