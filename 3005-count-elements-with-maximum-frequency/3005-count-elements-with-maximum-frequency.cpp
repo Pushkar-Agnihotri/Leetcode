@@ -6,11 +6,13 @@ public:
         int freq = 0;
         for(int i=0;i<nums.size();i++){
             mp[nums[i]]++;
-            freq = max(freq, mp[nums[i]]);
-        }
-        for(auto x:mp){
-            if(x.second == freq)
-            ans+=freq;
+            if(freq < mp[nums[i]]){
+                freq = mp[nums[i]];
+                ans = freq;
+            }
+            else if(freq == mp[nums[i]]){
+                ans+=freq;
+            }
         }
         return ans;
     }
